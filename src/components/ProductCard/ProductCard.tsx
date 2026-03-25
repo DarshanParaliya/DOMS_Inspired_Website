@@ -23,7 +23,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
   isVisible = false
 }, ref) => {
   const filterId = `textured-mask-${id}`;
-  
+
   // Use a more intense grain for the "textured" feel
   const baseFrequency = 0.8 + (Math.random() * 0.2); // Unique-ish subtle variation per mount or id
   const seed = typeof id === 'number' ? id : parseInt(id) || 1;
@@ -62,7 +62,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
       </svg>
 
       {/* Image Container */}
-      <div 
+      <div
         className="p-4 flex items-center justify-center aspect-square relative overflow-hidden"
         style={{ backgroundColor: imageBgColor }}
       >
@@ -84,8 +84,8 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
             filter: `url(#${filterId})`,
             backgroundColor: imageBgColor,
             // Diagonal Reveal logic - Wipes diagonally from bottom-left to top-right
-            clipPath: isVisible 
-              ? 'polygon(100% 0, 100% 0, 100% 150%, 150% 100%)' 
+            clipPath: isVisible
+              ? 'polygon(100% 0, 100% 0, 100% 150%, 150% 100%)'
               : 'polygon(-50% 0, 150% 0, 150% 150%, -50% 150%)',
             opacity: isVisible ? 0 : 1,
             pointerEvents: 'none'

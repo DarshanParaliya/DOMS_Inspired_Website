@@ -72,7 +72,7 @@ const PRODUCTS: Product[] = [
 const Structure = () => {
   const containerRef = useRef<HTMLElement>(null);
   const bottomRowRef = useRef<HTMLDivElement>(null);
-  const [sectionBg, setSectionBg] = useState('#F8F8F8');
+  const [sectionBg, setSectionBg] = useState('white');
   const [isGridVisible, setIsGridVisible] = useState(false);
 
   useEffect(() => {
@@ -99,19 +99,16 @@ const Structure = () => {
   return (
     <section
       ref={containerRef}
-      className="min-h-screen w-full py-[70px] font-['Outfit'] relative bg-cover bg-center bg-no-repeat overflow-hidden transition-colors duration-700 ease-in-out"
-      style={{
-        backgroundImage: "url('/assets/images/structure_bg.png')",
-        backgroundColor: sectionBg
-      }}
+      className="min-h-screen w-full pt-[70px] font-['Outfit'] relative overflow-hidden transition-colors duration-700 ease-in-out"
+      style={{ backgroundColor: sectionBg }}
       id="products-grid"
     >
-      <div className="max-w-[1700px] mx-auto px-10 flex flex-col justify-center items-center">
-        <h2 className="text-[2.5rem] font-[500] text-[#111] mb-[60px] font-roboto-condensed tracking-tight uppercase text-center md:text-left">
+      <div className="max-w-[2000px] mx-auto px-10 flex flex-col justify-center items-center">
+        <h2 className="text-[2.5rem] font-[500] text-[#111] mb-[60px] font-roboto-condensed tracking-tight uppercase text-center md:text-left ">
           Products
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-start gap-16 px-20 pb-20">
           {/* Top Row (First 4 cards) */}
           {PRODUCTS.slice(0, 4).map((product) => (
             <ProductCard
@@ -123,7 +120,7 @@ const Structure = () => {
               colorSwatches={product.swatches}
               isVisible={isGridVisible}
               onMouseEnter={() => setSectionBg(product.bgColor)}
-              onMouseLeave={() => setSectionBg('#F8F8F8')}
+              onMouseLeave={() => setSectionBg('white')}
             />
           ))}
 
@@ -139,7 +136,7 @@ const Structure = () => {
                 colorSwatches={product.swatches}
                 isVisible={isGridVisible}
                 onMouseEnter={() => setSectionBg(product.bgColor)}
-                onMouseLeave={() => setSectionBg('#F8F8F8')}
+                onMouseLeave={() => setSectionBg('white')}
               />
             ))}
           </div>

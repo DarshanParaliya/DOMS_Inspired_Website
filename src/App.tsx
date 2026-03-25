@@ -7,6 +7,8 @@ import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
 import Structure from './components/Structure/Structure';
 import Marquee from './components/Marquee/Marquee';
+import Social from './components/Social/Social';
+import Dropdown from './components/Dropdown/Dropdown';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,6 +52,15 @@ function App() {
 
           <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
             <Structure />
+          </section>
+
+          <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
+            <Social />
+          </section>
+
+          {/* New Horizontal Dropdown Section */}
+          <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
+            <Dropdown />
           </section>
         </div>
       </div>
