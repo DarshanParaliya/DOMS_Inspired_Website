@@ -5,10 +5,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Loader from './components/Loader/Loader';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
-import Structure from './components/Structure/Structure';
+import ProductCatalog from './components/ProductCatalog.tsx/ProductCatalog';
 import Marquee from './components/Marquee/Marquee';
-import Social from './components/Social/Social';
-import Dropdown from './components/Dropdown/Dropdown';
+import CommunitySection from './components/CommunitySection.tsx/CommunitySection';
+import BrandJourney from './components/BrandJourney.tsx/BrandJourney';
+import ProductIntro from './components/productCatalog/ProductIntro';
+import Footer from './components/Footer/Footer';
+import CursorTrail from './components/CursorTrail/CursorTrail';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +25,7 @@ function App() {
       document.body.style.overflowX = 'hidden';
       document.documentElement.style.overflowY = 'auto';
       document.documentElement.style.overflowX = 'hidden';
-      
+
       // Defer refresh to allow animations to start smoothly
       const timer = setTimeout(() => {
         ScrollTrigger.refresh();
@@ -40,28 +43,36 @@ function App() {
     */
     <ReactLenis root options={{ duration: 1.2, smoothWheel: true }}>
       <div className="w-full min-h-screen">
+        <CursorTrail />
         <Navbar />
         <Loader setLoaded={setLoaded} />
 
-        <div className="relative w-full overflow-x-hidden">
-          <section className="relative w-full h-screen">
+        <div className="relative w-full overflow-x-hidden bg-transparent">
+          <section className="relative w-full h-screen bg-transparent">
             <Hero isLoaded={loaded} />
           </section>
 
           <Marquee />
 
-          <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
-            <Structure />
+          <section className={`relative w-full bg-transparent ${loaded ? 'visible' : 'invisible'}`}>
+            <ProductCatalog />
+          </section>
+
+          <section className={`relative w-full bg-transparent ${loaded ? 'visible' : 'invisible'}`}>
+            <ProductIntro />
           </section>
 
           <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
-            <Social />
+            <CommunitySection />
           </section>
 
           {/* New Horizontal Dropdown Section */}
           <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
-            <Dropdown />
+            <BrandJourney />
           </section>
+
+          {/* Fully Finished Footer */}
+          <Footer />
         </div>
       </div>
     </ReactLenis>

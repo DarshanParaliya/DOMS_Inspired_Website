@@ -33,7 +33,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="bg-white rounded-[12px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 w-65 h-[350px] group cursor-pointer border border-white flex flex-col relative mx-auto"
+      className="bg-white overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 w-80 h-[400px] group cursor-pointer border-10 border-white flex flex-col relative mx-auto"
     >
       {/* Intricate SVG Filter for the Mask */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute' }}>
@@ -96,7 +96,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
       {/* Bottom Info Section - Footer remains sharp and unchanged */}
       <div className="p-3 px-4 flex justify-between items-center bg-white relative z-20 border-t border-gray-50 flex-grow">
         <div className="flex items-center gap-2">
-          <h3 className="text-[11px] font-[900] text-[#111] uppercase tracking-widest font-roboto-condensed">
+          <h3 className="text-[14px] font-[900] text-[#111] uppercase tracking-widest font-roboto-condensed">
             {categoryName}
           </h3>
         </div>

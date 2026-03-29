@@ -4,12 +4,12 @@ const Marquee = () => {
   const repeatedText = Array(10).fill(sentence).join("");
 
   return (
-    <div className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500  py-4 overflow-hidden select-none">
+    <div className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 py-4 overflow-hidden select-none">
       <div className="flex whitespace-nowrap animate-marquee">
-        <span className="text-white text-[1.5rem] font-[900] uppercase tracking-[0.4rem] pr-10">
+        <span className="text-white text-[1.5rem] font-[900] uppercase tracking-[0.4rem] pr-10 orbitron">
           {repeatedText}
         </span>
-        <span className="text-white text-[1.5rem] font-[900] uppercase tracking-[0.4rem] pr-10">
+        <span className="text-white text-[1.5rem] font-[900] uppercase tracking-[0.4rem] pr-10 orbitron">
           {repeatedText}
         </span>
       </div>
