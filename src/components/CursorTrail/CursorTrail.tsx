@@ -23,36 +23,40 @@ const CursorFX = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [petals, setPetals] = useState<Petal[]>([]);
   const [isPointer, setIsPointer] = useState(false);
-  const mouse = useRef({ x: -999, y: -999 });
   const animRef = useRef<number>(0);
   const petalsRef = useRef<Petal[]>([]);
+  // Throttle flag: only read getComputedStyle once per 100ms to avoid layout reflow on every mousemove
+  const pointerCheckTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    // Force cursor: none on everything so no native cursor ever shows
+    // Skip on touch-only devices — cursor FX is mouse-only
+    if (window.matchMedia('(hover: none)').matches) return;
+
     const styleTag = document.createElement('style');
     styleTag.id = 'cursor-none-override';
     styleTag.textContent = `*, *::before, *::after { cursor: none !important; }`;
     document.head.appendChild(styleTag);
 
     const onMouseMove = (e: MouseEvent) => {
-      mouse.current = { x: e.clientX, y: e.clientY };
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       }
 
-      // Check if hovered element is naturally a pointer
-      const target = e.target as Element;
-      if (target) {
-        const computed = window.getComputedStyle(target).cursor;
-        // 'pointer' means it's a link/button/clickable = show hand
-        setIsPointer(computed === 'pointer');
+      // Throttle: check cursor style at most every 100ms to avoid forced reflow on each frame
+      if (!pointerCheckTimerRef.current) {
+        pointerCheckTimerRef.current = setTimeout(() => {
+          const target = e.target as Element;
+          if (target) {
+            setIsPointer(window.getComputedStyle(target).cursor === 'pointer');
+          }
+          pointerCheckTimerRef.current = null;
+        }, 100);
       }
     };
 
     const onClick = (e: MouseEvent) => {
       const burstCount = 12;
       const newPetals: Petal[] = [];
-
       for (let i = 0; i < burstCount; i++) {
         newPetals.push({
           id: petalId++,
@@ -67,29 +71,30 @@ const CursorFX = () => {
           life: 1,
         });
       }
-
       petalsRef.current = [...petalsRef.current, ...newPetals];
     };
 
-    // Animation loop to update petals
+    // Animation loop — only calls setPetals when petals actually exist to avoid
+    // triggering React reconciliation at 60fps when there is nothing to render
     const animate = () => {
-      petalsRef.current = petalsRef.current
-        .map(p => ({
-          ...p,
-          x: p.x + Math.cos(p.angle) * p.speed,
-          y: p.y + Math.sin(p.angle) * p.speed + 1.5,
-          rotation: p.rotation + p.rotationSpeed,
-          speed: p.speed * 0.93,
-          life: p.life - 0.025,
-        }))
-        .filter(p => p.life > 0);
-
-      setPetals([...petalsRef.current]);
+      if (petalsRef.current.length > 0) {
+        petalsRef.current = petalsRef.current
+          .map(p => ({
+            ...p,
+            x: p.x + Math.cos(p.angle) * p.speed,
+            y: p.y + Math.sin(p.angle) * p.speed + 1.5,
+            rotation: p.rotation + p.rotationSpeed,
+            speed: p.speed * 0.93,
+            life: p.life - 0.025,
+          }))
+          .filter(p => p.life > 0);
+        setPetals([...petalsRef.current]);
+      }
       animRef.current = requestAnimationFrame(animate);
     };
 
     animRef.current = requestAnimationFrame(animate);
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('click', onClick);
 
     return () => {
@@ -97,6 +102,7 @@ const CursorFX = () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('click', onClick);
       cancelAnimationFrame(animRef.current);
+      if (pointerCheckTimerRef.current) clearTimeout(pointerCheckTimerRef.current);
     };
   }, []);
 
@@ -131,7 +137,6 @@ const CursorFX = () => {
         style={{ willChange: 'transform' }}
       >
         {isPointer ? (
-          /* Hand icon when hovering clickable elements */
           <svg
             width="28"
             height="32"
@@ -140,21 +145,14 @@ const CursorFX = () => {
             xmlns="http://www.w3.org/2000/svg"
             style={{ display: 'block', filter: 'drop-shadow(0 2px 6px rgba(34,197,94,0.8))' }}
           >
-            {/* Palm */}
             <rect x="5" y="14" width="18" height="16" rx="4" fill="#22c55e" stroke="#15803d" strokeWidth="1.5" />
-            {/* Index finger */}
             <rect x="11" y="4" width="5" height="14" rx="2.5" fill="#22c55e" stroke="#15803d" strokeWidth="1.5" />
-            {/* Middle finger */}
             <rect x="17" y="7" width="5" height="12" rx="2.5" fill="#22c55e" stroke="#15803d" strokeWidth="1.5" />
-            {/* Ring finger */}
             <rect x="22" y="10" width="4" height="10" rx="2" fill="#22c55e" stroke="#15803d" strokeWidth="1.5" />
-            {/* Thumb */}
             <rect x="2" y="17" width="5" height="8" rx="2.5" fill="#22c55e" stroke="#15803d" strokeWidth="1.5" />
-            {/* Glint */}
             <path d="M13 6 L13 11" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeOpacity="0.5" />
           </svg>
         ) : (
-          /* Arrow icon default */
           <svg
             width="28"
             height="32"

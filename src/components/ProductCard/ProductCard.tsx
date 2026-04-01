@@ -1,5 +1,5 @@
 
-import { forwardRef } from 'react';
+import { forwardRef, useMemo } from 'react';
 
 interface ProductCardProps {
   id: string | number;
@@ -23,10 +23,10 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
   isVisible = false
 }, ref) => {
   const filterId = `textured-mask-${id}`;
+  const seed = typeof id === 'number' ? id : parseInt(id as string) || 1;
 
-  // Use a more intense grain for the "textured" feel
-  const baseFrequency = 0.8 + (Math.random() * 0.2); // Unique-ish subtle variation per mount or id
-  const seed = typeof id === 'number' ? id : parseInt(id) || 1;
+  // Memoized: was Math.random() on every render — caused unstable, inconsistent SVG filters
+  const baseFrequency = useMemo(() => 0.8 + (seed * 0.025) % 0.2, [seed]);
 
   return (
     <div

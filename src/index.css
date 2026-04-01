@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Baloo+2:wght@400..800&family=Caveat+Brush&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Kalam:wght@300;400;700&family=Orbitron:wght@400..900&family=Patrick+Hand&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Rock+Salt&family=Rubik+Bubbles&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Titan+One&display=swap');
+/* Critical fonts loaded synchronously (used in loader, hero, navbar) */
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+/* Secondary/decorative fonts — loaded with display=swap to prevent FOIT */
+@import url('https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Baloo+2:wght@400..800&family=Caveat+Brush&family=Kalam:wght@300;400;700&family=Patrick+Hand&family=Rock+Salt&family=Rubik+Bubbles&display=swap');
 @import "tailwindcss";
 
 

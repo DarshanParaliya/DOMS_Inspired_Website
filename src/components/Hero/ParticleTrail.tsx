@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import { loadSlim } from "tsparticles-slim";
 
 const ParticleTrail = () => {
   const particlesInit = useCallback(async (engine: any) => {
-    await loadFull(engine);
+    await loadSlim(engine);
   }, []);
 
   return (
@@ -13,7 +13,7 @@ const ParticleTrail = () => {
       init={particlesInit}
       options={{
         fullScreen: { enable: false },
-        fpsLimit: 120,
+        fpsLimit: 60,
         interactivity: {
           events: {
             onHover: {
@@ -25,7 +25,7 @@ const ParticleTrail = () => {
           modes: {
             trail: {
               delay: 0.005,
-              quantity: 50, // Dense colorful path
+              quantity: 15, // Reduced from 50 \u2014 was GPU-heavy
               particles: {
                 color: {
                   value: ["#FFEB3B", "#F44336", "#2196F3", "#4CAF50"]

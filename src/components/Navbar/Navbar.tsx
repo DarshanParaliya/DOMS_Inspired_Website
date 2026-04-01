@@ -1,14 +1,21 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Blogs', link: '#' },
-    { name: 'Events', link: '#' },
-    { name: 'AboutUs', link: '#' },
-    { name: 'Profile', link: '#' },
+    { name: 'Blogs', link: '/blogs' },
+    { name: 'Events', link: '/events' },
+    { name: 'AboutUs', link: '/about-us' },
+    { name: 'Profile', link: '/profile' },
   ];
+
+  const handleNavigation = (link: string) => {
+    navigate(link);
+    setIsOpen(false);
+  };
 
   return (
     <nav className="w-full fixed top-0 left-0 z-[1000] flex justify-between items-center pt-4 pb-8 px-14 bg-transparent">
@@ -17,7 +24,7 @@ const Navbar = () => {
         src="/doms_logo2.png"
         alt="DOMS Logo"
         className="h-[70px] mt-2 pt-2 cursor-pointer hover:opacity-85 transition-opacity"
-        onClick={() => window.location.href = '/'}
+        onClick={() => navigate('/')}
       />
 
       <div className="relative">
@@ -39,16 +46,15 @@ const Navbar = () => {
             {menuItems.map((item, idx) => (
               <li
                 key={idx}
-                className="group relative list-none"
-                onClick={() => setIsOpen(false)}
+                className="group relative list-none cursor-pointer"
+                onClick={() => handleNavigation(item.link)}
               >
                 <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-[2px] bg-green-500 group-hover:w-4 transition-all duration-300" />
-                <a
-                  href={item.link}
+                <span
                   className="block text-[1.3rem] font-bold text-gray-800 sour-gummy tracking-wide py-3 px-6 rounded-xl hover:bg-gray-50 hover:text-green-600 transition-all duration-300 hover:pl-8 no-underline uppercase"
                 >
                   {item.name}
-                </a>
+                </span>
               </li>
             ))}
           </ul>

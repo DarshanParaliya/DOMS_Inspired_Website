@@ -1,17 +1,20 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const colors = ['#facc15', '#ef4444', '#000000', '#22c55e', '#ec4899'];
 
-  const renderColoredText = (text: string) => {
+  const renderColoredText = useCallback((text: string) => {
     return text.split('').map((char, index) => (
       <span key={index} style={{ color: colors[index % colors.length] }}>
         {char}
       </span>
     ));
-  };
+  }, []);
+
+  // Memoize rendered chars so we don't re-split + re-map on every character typed
+  const coloredEmail = useMemo(() => renderColoredText(email), [email, renderColoredText]);
 
   const socialLinks = [
     { id: 'youtube', icon: 'M10 15 L10 9 L15 12 Z', color: 'hover:bg-red-600' },
@@ -21,7 +24,7 @@ const Footer = () => {
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center py-20 px-4 md:px-10 overflow-hidden bg-transparent">
+    <section className="relative w-full min-h-screen flex items-center justify-center py-20 px-4 md:px-10 overflow-hidden bg-gradient-to-b from-green-300 via-white to-blue-300">
 
       {/* Polaroid Image */}
       <div className="w-[14vw] h-[17vw] overflow-hidden bg-gray-50 flex items-center justify-center border-6 border-gray-300 absolute top-[1%] left-0 mr-[5vw] mt-[5vw] z-10 rotate-[15deg] left-60 top-[-0.5%]">
@@ -43,7 +46,7 @@ const Footer = () => {
               <div className="flex-1 relative h-16">
                 <div className="absolute inset-0 py-4 px-2 josefin-sans text-xl pointer-events-none flex items-center w-[65%] overflow-hidden">
                   {!email && <span className="text-gray-300 whitespace-nowrap">Enter your email</span>}
-                  <span className="whitespace-pre">{renderColoredText(email)}</span>
+                  <span className="whitespace-pre">{coloredEmail}</span>
                 </div>
 
                 <input

@@ -1,7 +1,7 @@
 
 const CommunitySection = () => {
   return (
-    <section className="w-full overflow-hidden bg-transparent" id="social">
+    <section className="w-full overflow-hidden bg-gradient-to-b from-gray-300 via-[white] to-transparent" id="social">
 
       <div className="w-[78vw] mx-auto pt-[4vw]">
         <img src="/assets/images/community1.png" alt="Social Heading" className="w-[40vw] h-full object-cover" />

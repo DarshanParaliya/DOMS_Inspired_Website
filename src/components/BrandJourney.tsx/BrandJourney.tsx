@@ -4,8 +4,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useSpring, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-gsap.registerPlugin(ScrollTrigger);
+// ScrollTrigger is registered once in App.tsx
 
 const StatCounter = ({ value, suffix = "", decimals = 0 }: { value: number; suffix?: string; decimals?: number }) => {
   const spring = useSpring(0, { mass: 1, stiffness: 30, damping: 10 });
@@ -109,7 +108,7 @@ const BrandJourney = () => {
   return (
     <section
       ref={horizontalSectionRef}
-      className="relative w-full h-screen overflow-hidden bg-transparent"
+      className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-transparent from-50% to-green-300"
       id="dropdown-section"
     >
 
@@ -153,7 +152,7 @@ const BrandJourney = () => {
             <img src="/assets/images/drop15.png" alt="Overlay 15" className="w-2/3 h-auto object-contain" />
           </div>
 
-          <div className="absolute bottom-[6%] right-[6%] w-[20vw]  pointer-events-none border-b border-gray-300 pb-[1vw] " >
+          <div className="absolute bottom-[6%] right-[6%] w-[16vw]  pointer-events-none border-b  border-gray-500 pb-[1vw] " >
             <h1 className='text-[1vw] font-[500] text-[#111]'>The Visionaries Behind the Verdict</h1>
           </div>
 
@@ -203,7 +202,11 @@ const BrandJourney = () => {
               <p className='text-[1vw] font-[500] text-[#111]'>Founder of DOMS Industries</p>
             </div>
             <div className='w-[22vw] h-[22vw] absolute bottom-[-2%] left-3'>
-              <img src="/assets/images/founder1.png" alt="" className='w-full h-full' />
+              {/* Premium Photo Frame for Person 1 */}
+              <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[100%] h-[110%] bg-red-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-blue-300/20 blur-[4vw]" />
+              </div>
+              <img src="/assets/images/founder1.png" alt="" className='w-full h-full relative z-10' />
             </div>
 
 
@@ -213,7 +216,11 @@ const BrandJourney = () => {
               <p className='text-[1vw] font-[500] text-[#111]'>Founder of DOMS Industries</p>
             </div>
             <div className='w-[20vw] h-[20vw] absolute bottom-[-4%] left-[26%]'>
-              <img src="/assets/images/founder2.png" alt="" className='w-full h-full' />
+              {/* Premium Photo Frame for Person 2 */}
+              <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[110%] h-[110%] bg-yellow-300/50 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-purple-300/20 blur-[4vw]" />
+              </div>
+              <img src="/assets/images/founder2.png" alt="" className='w-full h-full relative z-10' />
             </div>
 
 
@@ -223,7 +230,11 @@ const BrandJourney = () => {
               <p className='text-[1vw] font-[500] text-[#111]'>Chairperson and Non-Executive <br />Director of our Company </p>
             </div>
             <div className='w-[22vw] h-[22vw] absolute bottom-[-4%] left-[52%]'>
-              <img src="/assets/images/founder3.png" alt="" className='w-full h-full' />
+              {/* Premium Photo Frame for Person 3 */}
+              <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[90%] h-[100%] bg-blue-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-green-300/20 blur-[4vw]" />
+              </div>
+              <img src="/assets/images/founder3.png" alt="" className='w-full h-full relative z-10' />
             </div>
 
 
@@ -232,7 +243,11 @@ const BrandJourney = () => {
               <p className='text-[0.9vw] font-[500] text-[#111]'>Whole-time Director and one of <br />the Individual Promoters of our Company</p>
             </div>
             <div className='w-[20vw] h-[20vw] absolute bottom-[-4%] right-[2%]'>
-              <img src="/assets/images/founder4.png" alt="" className='w-full h-full' />
+              {/* Premium Photo Frame for Person 4 */}
+              <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[110%] h-[105%] bg-orange-300/80 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-orange-300/20 blur-[4vw]" />
+              </div>
+              <img src="/assets/images/founder4.png" alt="" className='w-full h-full relative z-10' />
             </div>
           </div>
 
@@ -334,9 +349,12 @@ const BrandJourney = () => {
 
         {/* Grainy Noise Overlay - Only active in this section */}
       </div>
+      {/* Subtle noise overlay using CSS-only approach — no external fetch */}
       <div
         className="absolute inset-0 z-[100] pointer-events-none opacity-[0.03] scale-150 rotate-12"
-        style={{ backgroundImage: "url('https://grainy-gradients.vercel.app/noise.svg')" }}
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
+        }}
       />
     </section>
   );

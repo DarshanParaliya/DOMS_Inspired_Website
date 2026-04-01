@@ -3,8 +3,8 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ParticleTrail from './ParticleTrail';
-
-gsap.registerPlugin(ScrollTrigger);
+// ScrollTrigger is registered once in App.tsx — imported here for GSAP to resolve the plugin at runtime
+void ScrollTrigger; // prevent tree-shaking of the side-effecting plugin reference
 
 interface HeroProps {
   isLoaded: boolean;
@@ -151,7 +151,7 @@ const Hero = ({ isLoaded }: HeroProps) => {
       });
     };
 
-    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mousemove', handleMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMove);
   }, { dependencies: [isLoaded], scope: containerRef });
 
@@ -160,7 +160,7 @@ const Hero = ({ isLoaded }: HeroProps) => {
       ref={containerRef}
       className="relative h-screen w-full overflow-hidden z-[10]"
       style={{
-        background: 'radial-gradient(circle at 20% 20%, #aca6f8ff 0%, transparent 40%), radial-gradient(circle at 75% 45%, #77f396ff 0%, transparent 50%), radial-gradient(circle at 20% 90%, #f6f7b8ff 0%, transparent 40%), #8ea1f3ff',
+        background: 'radial-gradient(circle at 20% 20%, #cbc8f1ff 0%, transparent 40%), radial-gradient(circle at 75% 45%, #cbffd8ff 0%, transparent 50%), radial-gradient(circle at 20% 90%, #f6f7dcff 0%, transparent 40%), #8ea1f3ff',
       }}
 
     >
@@ -180,10 +180,10 @@ const Hero = ({ isLoaded }: HeroProps) => {
         ref={textWrapperRef}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[20] text-center w-full pointer-events-none"
       >
-        <h1 className="text-[17vw] font-extrabold text-white leading-[0.9] tracking-[-1vw] m-0 select-none mix-blend-difference">
+        <h1 className="text-[17vw] font-extrabold text-black leading-[0.9] tracking-[-1vw] m-0 select-none mix-blend-difference">
           DOMS
         </h1>
-        <p className="text-[1.2vw] font-[700] uppercase text-white tracking-[0.3vw] mt-[-1vw] pt-[2vw]">
+        <p className="text-[1.2vw] font-[700] uppercase text-black tracking-[0.3vw] mt-[-1vw] pt-[2vw]">
           EVERY AMBITION NEEDS A PREPARATION.
         </p>
       </div>

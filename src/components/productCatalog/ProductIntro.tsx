@@ -36,7 +36,7 @@ const VideoBox = ({ src, title, poster }: { src: string; title: string; poster?:
 
 const ProductIntro = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-transparent">
+    <section className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#] via-[white] to-gray-300">
 
       {/* Background Decorative Elements */}
 
