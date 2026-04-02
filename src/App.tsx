@@ -6,11 +6,11 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import Hero from './components/Hero/Hero';
 import Navbar from './components/Navbar/Navbar';
-import ProductCatalog from './components/ProductCatalog/ProductCatalog';
+import ProductCatalog from './components/ProductCatalogRefactored/ProductCatalog';
 import Marquee from './components/Marquee/Marquee';
 import CommunitySection from './components/CommunitySection/CommunitySection';
 import BrandJourney from './components/BrandJourney/BrandJourney';
-import ProductIntro from './components/ProductCatalog/ProductIntro';
+import ProductIntro from './components/ProductCatalogRefactored/ProductIntro';
 import Footer from './components/Footer/Footer';
 import CursorTrail from './components/CursorTrail/CursorTrail';
 
