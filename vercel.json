@@ -1,5 +1,8 @@
 {
-  "routes": [
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
