@@ -5,7 +5,6 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 import legacyImg from '../../assets/images/about_us1.webp';
-import pencilImg from '../../assets/images/pencil_image.png';
 import manufacturingImg from '../../assets/images/about_us2.webp';
 import mascotImg from '../../assets/images/about_us3.webp';
 
