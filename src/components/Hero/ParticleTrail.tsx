@@ -1,16 +1,25 @@
-import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
+import { useEffect, useState } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import type { Engine } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
 
 const ParticleTrail = () => {
-  const particlesInit = useCallback(async (engine: any) => {
-    await loadSlim(engine);
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine: Engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
   }, []);
+
+  if (!init) return null;
 
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
+
       options={{
         fullScreen: { enable: false },
         fpsLimit: 60,
