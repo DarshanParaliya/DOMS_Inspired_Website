@@ -95,11 +95,11 @@ const ProductCatalog = () => {
           }
         });
       },
-      { threshold: 0.7 }
+      { threshold: 0.2 }
     );
 
-    if (bottomRowRef.current) {
-      observer.observe(bottomRowRef.current);
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
     }
 
     return () => observer.disconnect();

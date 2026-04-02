@@ -172,7 +172,7 @@ const Hero = ({ isLoaded }: HeroProps) => {
     >
 
       <div ref={badgeRef} className='absolute top-[60%] right-[7%] w-[15vw] opacity-[50%]'>
-        <img src={heroBadge} className=" h-[15vw] object-cover" alt="Badge" />
+        <img src={heroBadge} className=" h-[15vw] object-contain" alt="Badge" />
       </div>
 
 

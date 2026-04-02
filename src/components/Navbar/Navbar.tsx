@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full fixed top-0 left-0 z-[1000] flex justify-between items-center pt-4 pb-8 px-14 bg-transparent">
+    <nav className="w-full fixed top-0 left-0 z-[1000] flex justify-between items-center pt-4 pb-8 px-4 md:px-14 bg-transparent">
       {/* Brand Logo */}
       <img
         src={domsLogo}
