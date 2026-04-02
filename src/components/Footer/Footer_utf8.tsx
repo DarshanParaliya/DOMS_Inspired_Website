@@ -1,4 +1,4 @@
-﻿import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
@@ -103,7 +103,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
             <div className="w-[4vw] h-[4vw]">
 
-              <img src="/assets/images/doms_logo2.png" className="w-full h-full object-contain"/>
+              <img src="/doms_logo2.png" className="w-full h-full object-contain"/>
             </div>  
             <p className="max-w-md josefin-sans text-gray-500 leading-relaxed text-sm">
               Plot No. 117, G.I.D.C., 52 Hector Expansion Area, Umbergaon â€“ 396171, Dist. Valsad, Gujarat, India
