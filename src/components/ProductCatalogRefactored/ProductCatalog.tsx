@@ -85,26 +85,24 @@ const ProductCatalog = () => {
   const [isGridVisible, setIsGridVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsGridVisible(true);
-          } else {
-            setIsGridVisible(false);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsGridVisible(true);
+        } else {
+          setIsGridVisible(false); // 👈 ADD THIS (reverse hide)
+        }
+      });
+    },
+    { threshold: 0.7 }
+  );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
+  if (containerRef.current) {
+    observer.observe(containerRef.current);
+  }
     return () => observer.disconnect();
-  }, []);
-
+    }, []);
   return (
     <section
       ref={containerRef}
