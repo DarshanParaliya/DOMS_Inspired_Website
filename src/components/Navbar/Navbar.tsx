@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import domsLogo from '../../assets/images/doms_logo2.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
     <nav className="w-full fixed top-0 left-0 z-[1000] flex justify-between items-center pt-4 pb-8 px-14 bg-transparent">
       {/* Brand Logo */}
       <img
-        src="/doms_logo2.png"
+        src={domsLogo}
         alt="DOMS Logo"
         className="h-[70px] mt-2 pt-2 cursor-pointer hover:opacity-85 transition-opacity"
         onClick={() => navigate('/')}

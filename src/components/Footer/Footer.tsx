@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion';
 import { useState, useCallback, useMemo } from 'react';
+import footer1 from '../../assets/images/footer1.png';
+import domsLogo from '../../assets/images/doms_logo2.png';
+
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +32,7 @@ const Footer = () => {
       {/* Polaroid Image */}
       <div className="w-[14vw] h-[17vw] overflow-hidden bg-gray-50 flex items-center justify-center border-6 border-gray-300 absolute top-[2%] left-0 mr-[5vw] mt-[5vw] z-10 rotate-[15deg] left-60 top-[-0.5%]">
         <img
-          src="/assets/images/footer1.png"
+          src={footer1}
           alt="Creativity takes courage"
           className="w-full h-full object-cover"
         />
@@ -120,7 +123,7 @@ const Footer = () => {
         <div className="w-full flex flex-col md:flex-row items-center justify-around gap-10 border-t border-gray-100">
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
             <div className="w-[4.5vw] h-[4.5vw] cursor-pointer" onClick={() => window.location.href = "/"}>
-              <img src="/doms_logo2.png" className="w-full h-full object-contain" />
+              <img src={domsLogo} className="w-full h-full object-contain" />
             </div>
             <p className="max-w-md sour-gummy text-gray-500 leading-relaxed text-md">
               Plot No. 117, G.I.D.C., 52 Hector Expansion Area, Umbergaon – 396171, Dist. Valsad, Gujarat, India

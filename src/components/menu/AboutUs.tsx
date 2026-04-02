@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import legacyImg from '../../assets/images/DOMS_image1.webp';
+import pencilImg from '../../assets/images/pencil_image.png';
+
 
 const AboutUs = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -52,7 +55,7 @@ const AboutUs = () => {
           </div>
           <div className="relative">
             <div className="absolute inset-0 bg-orange-200/50 blur-3xl rounded-full scale-75" />
-            <img src="/assets/images/DOMS_image1.webp" alt="Legacy" className="relative z-10 w-full h-auto rounded-[3rem] shadow-2xl border-8 border-white" />
+            <img src={legacyImg} alt="Legacy" className="relative z-10 w-full h-auto rounded-[3rem] shadow-2xl border-8 border-white" />
           </div>
         </div>
 
@@ -72,7 +75,7 @@ const AboutUs = () => {
 
       {/* Decorative floating elements */}
       <div className="absolute top-[15%] right-[10%] w-[12vw] opacity-30 animate-pulse">
-        <img src="/assets/images/pencil_image.png" alt="" className="w-full rotate-45" />
+        <img src={pencilImg} alt="" className="w-full rotate-45" />
       </div>
     </div>
   );

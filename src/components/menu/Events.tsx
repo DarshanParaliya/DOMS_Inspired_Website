@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import drop11 from '../../assets/images/drop11.png';
+import drop14 from '../../assets/images/drop14.png';
+
 
 const Events = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,8 +50,8 @@ const Events = () => {
         <div className="flex flex-col gap-10 mt-10">
           {events.map((event, i) => (
             <div key={i} className="group relative flex flex-col md:flex-row items-center gap-10 bg-white/60 backdrop-blur-md p-10 rounded-[3rem] border border-white/80 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
-               <div className="absolute top-0 right-0 w-[40%] h-full bg-green-500/10 -skew-x-[20deg] translate-x-[20%] group-hover:bg-green-500/20 transition-all duration-500 z-0" />
-              
+              <div className="absolute top-0 right-0 w-[40%] h-full bg-green-500/10 -skew-x-[20deg] translate-x-[20%] group-hover:bg-green-500/20 transition-all duration-500 z-0" />
+
               <div className="flex-shrink-0 w-full md:w-[200px] text-center md:text-left z-10">
                 <span className="text-[2.5vw] font-bold titan-one-regular text-green-600 leading-none block">{event.date.split(',')[0]}</span>
                 <span className="text-lg font-bold josefin-sans text-gray-500 uppercase tracking-widest">{event.date.includes(',') ? event.date.split(',')[1] : ""}</span>
@@ -58,7 +61,7 @@ const Events = () => {
                 <h3 className="text-4xl font-bold sour-gummy mb-3 text-[#111] group-hover:text-green-600 transition-colors uppercase">{event.title}</h3>
                 <span className="text-sm font-bold text-gray-400 josefin-sans uppercase tracking-[0.2vw] mb-3 block">{event.location}</span>
                 <p className="text-gray-600 averia-libre-regular text-xl leading-relaxed">{event.desc}</p>
-                 <button className="mt-8 px-8 py-3 bg-[#111] text-white rounded-full sour-gummy text-xl hover:bg-green-700 transition-colors">Register Now</button>
+                <button className="mt-8 px-8 py-3 bg-[#111] text-white rounded-full sour-gummy text-xl hover:bg-green-700 transition-colors">Register Now</button>
               </div>
             </div>
           ))}
@@ -66,10 +69,10 @@ const Events = () => {
       </div>
 
       <div className="absolute top-[10%] left-[5%] w-[15vw] opacity-20 -rotate-[15deg]">
-        <img src="/assets/images/drop11.png" alt="" className="w-full" />
+        <img src={drop11} alt="" className="w-full" />
       </div>
-       <div className="absolute bottom-[10%] right-[5%] w-[12vw] opacity-20 rotate-[10deg]">
-        <img src="/assets/images/drop14.png" alt="" className="w-full" />
+      <div className="absolute bottom-[10%] right-[5%] w-[12vw] opacity-20 rotate-[10deg]">
+        <img src={drop14} alt="" className="w-full" />
       </div>
     </div>
   );

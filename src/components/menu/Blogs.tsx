@@ -1,6 +1,13 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import drop11 from '../../assets/images/drop11.png';
+import drop12 from '../../assets/images/drop12.png';
+import drop13 from '../../assets/images/drop13.png';
+import drop14 from '../../assets/images/drop14.png';
+
+const dropImages = [drop11, drop12, drop13, drop14];
+
 
 const Blogs = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +56,7 @@ const Blogs = () => {
           {posts.map((post, i) => (
             <div key={i} className="group flex flex-col md:flex-row items-center gap-6 bg-white/50 backdrop-blur-lg p-8 rounded-[2.5rem] border border-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
               <div className="w-[12vw] h-[12vw] min-w-[120px] min-h-[120px] bg-blue-100 rounded-[1.5rem] overflow-hidden flex-shrink-0 group-hover:scale-105 transition-transform">
-                 <img src={`/assets/images/drop${(i%4)+11}.png`} className='w-full h-full object-cover p-4 opacity-70 group-hover:opacity-100 transition-opacity' alt="" />
+                <img src={dropImages[i % dropImages.length]} className='w-full h-full object-cover p-4 opacity-70 group-hover:opacity-100 transition-opacity' alt="" />
               </div>
               <div className="text-left flex-grow">
                 <span className="text-sm font-bold text-blue-500 josefin-sans uppercase tracking-[0.2vw] mb-2 block">{post.date}</span>
@@ -63,7 +70,7 @@ const Blogs = () => {
       </div>
 
       <div className="absolute bottom-[5%] left-[5%] w-[10vw] opacity-20 rotate-[15deg]">
-        <img src="/assets/images/drop13.png" alt="" className="w-full" />
+        <img src={drop13} alt="" className="w-full" />
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import treehouseLogo from '../../assets/images/doms-treehouse.png';
+
 
 interface LoaderProps {
   setLoaded: (loaded: boolean) => void;
@@ -106,7 +108,7 @@ const Loader = ({ setLoaded }: LoaderProps) => {
               <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -rotate-45 group-hover:left-[200%] transition-all duration-[2s] pointer-events-none" />
 
               <img
-                src="/assets/images/doms-treehouse.png"
+                src={treehouseLogo}
                 alt="DOMS Logo"
                 className="w-[200px] h-auto object-contain"
               />

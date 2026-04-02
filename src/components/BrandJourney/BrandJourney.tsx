@@ -4,6 +4,23 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useSpring, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+
+import drop11 from '../../assets/images/drop11.png';
+import drop12 from '../../assets/images/drop12.png';
+import drop13 from '../../assets/images/drop13.png';
+import drop14 from '../../assets/images/drop14.png';
+import drop15 from '../../assets/images/drop15.png';
+import drop16 from '../../assets/images/drop16.png';
+import drop5 from '../../assets/images/drop5.png';
+import drop4 from '../../assets/images/drop4.png';
+import drop33 from '../../assets/images/drop33.png';
+import drop333 from '../../assets/images/drop333.png';
+import domsImage1 from '../../assets/images/DOMS_image1.webp';
+import founder1 from '../../assets/images/founder1.png';
+import founder2 from '../../assets/images/founder2.png';
+import founder3 from '../../assets/images/founder3.png';
+import founder4 from '../../assets/images/founder4.png';
+
 // ScrollTrigger is registered once in App.tsx
 
 const StatCounter = ({ value, suffix = "", decimals = 0 }: { value: number; suffix?: string; decimals?: number }) => {
@@ -135,21 +152,20 @@ const BrandJourney = () => {
           className="w-screen h-full flex flex-col md:flex-row items-center justify-center px-10 md:pl-55 gap-12 relative overflow-hidden bg-transparent"
         >
 
-          {/* Background Elements */}
           <div className="absolute top-[20%] left-[10%] w-[15vw] opacity-25 z-0 rotate-12 pointer-events-none">
-            <img src="/assets/images/drop11.png" alt="Overlay 11" className="w-full h-auto object-contain" />
+            <img src={drop11} alt="Overlay 11" className="w-full h-auto object-contain" />
           </div>
           <div className="absolute top-[5%] -right-[300%] w-[12vw] opacity-30 z-0 pointer-events-none">
-            <img src="/assets/images/drop12.png" alt="Overlay 12" className="w-full h-auto object-contain" />
+            <img src={drop12} alt="Overlay 12" className="w-full h-auto object-contain" />
           </div>
           <div className="absolute left-[10%] bottom-[1%] w-[10vw] opacity-35 z-0 pointer-events-none">
-            <img src="/assets/images/drop13.png" alt="Overlay 13" className="w-full h-auto object-contain" />
+            <img src={drop13} alt="Overlay 13" className="w-full h-auto object-contain" />
           </div>
           <div className="absolute top-[10%] right-[10%] w-[18vw] opacity-25 z-0 rotate-[45deg] pointer-events-none">
-            <img src="/assets/images/drop14.png" alt="Overlay 14" className="w-1/2 h-auto object-contain" />
+            <img src={drop14} alt="Overlay 14" className="w-1/2 h-auto object-contain" />
           </div>
           <div className="absolute top-[16%] right-[36%] w-[20vw] opacity-20 z-0 -rotate-6 pointer-events-none">
-            <img src="/assets/images/drop15.png" alt="Overlay 15" className="w-2/3 h-auto object-contain" />
+            <img src={drop15} alt="Overlay 15" className="w-2/3 h-auto object-contain" />
           </div>
 
           <div className="absolute bottom-[6%] right-[6%] w-[16vw]  pointer-events-none border-b  border-gray-500 pb-[1vw] " >
@@ -164,7 +180,7 @@ const BrandJourney = () => {
           {/* Right - 6 Columns */}
           <div className="w-full md:w-[60vh] h-[75vh] z-1 flex items-center justify-center">
             <img
-              src="/assets/images/DOMS_image1.webp"
+              src={domsImage1}
               alt="Story"
               className="w-full h-full object-cover border-red-500 border-10"
             />
@@ -177,7 +193,7 @@ const BrandJourney = () => {
 
 
           <div className='top-[-15.2%] left-[31%] absolute opacity-[10%]'>
-            <img src="/assets/images/drop16.png" />
+            <img src={drop16} />
           </div>
 
           <div className='absolute right-[7%] top-[3%]  border-b-2 border-gray-300 flex items-baseline gap-4'>
@@ -192,7 +208,7 @@ const BrandJourney = () => {
 
 
           <div className='w-[30vw] h-[30vw] top-[-30%] left-[-1%] overflow-hidden absolute rotate-[19deg]'>
-            <img src="/assets/images/drop5.png" alt="bgElements" className='w-full h-full rounded-full opacity-[45%]' />
+            <img src={drop5} alt="bgElements" className='w-full h-full rounded-full opacity-[45%]' />
           </div>
 
           <div>
@@ -206,7 +222,7 @@ const BrandJourney = () => {
               <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[100%] h-[110%] bg-red-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 bg-blue-300/20 blur-[4vw]" />
               </div>
-              <img src="/assets/images/founder1.png" alt="" className='w-full h-full relative z-10' />
+              <img src={founder1} alt="" className='w-full h-full relative z-10' />
             </div>
 
 
@@ -220,7 +236,7 @@ const BrandJourney = () => {
               <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[110%] h-[110%] bg-yellow-300/50 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 bg-purple-300/20 blur-[4vw]" />
               </div>
-              <img src="/assets/images/founder2.png" alt="" className='w-full h-full relative z-10' />
+              <img src={founder2} alt="" className='w-full h-full relative z-10' />
             </div>
 
 
@@ -234,7 +250,7 @@ const BrandJourney = () => {
               <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[90%] h-[100%] bg-blue-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 bg-green-300/20 blur-[4vw]" />
               </div>
-              <img src="/assets/images/founder3.png" alt="" className='w-full h-full relative z-10' />
+              <img src={founder3} alt="" className='w-full h-full relative z-10' />
             </div>
 
 
@@ -247,7 +263,7 @@ const BrandJourney = () => {
               <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[110%] h-[105%] bg-orange-300/80 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 bg-orange-300/20 blur-[4vw]" />
               </div>
-              <img src="/assets/images/founder4.png" alt="" className='w-full h-full relative z-10' />
+              <img src={founder4} alt="" className='w-full h-full relative z-10' />
             </div>
           </div>
 
@@ -259,17 +275,17 @@ const BrandJourney = () => {
 
 
           <div className='w-[25vw] h-[25vw] top-[-15%] left-[40%] absolute opacity-[20%] rotate-[25deg] rounded-lg'>
-            <img className='w-full h-full object-cover' src="/assets/images/drop33.png" />
+            <img className='w-full h-full object-cover' src={drop33} />
           </div>
           <div className='w-[25vw] h-[25vw] bottom-[-5%] right-[4%] absolute opacity-[20%]'>
-            <img className='w-full h-full object-contain' src="/assets/images/drop4.png" />
+            <img className='w-full h-full object-contain' src={drop4} />
           </div>
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pt-[5vh]">
             {/* Section Heading */}
             <div className="mb-[6vh] flex items-center gap-6">
               <div className="w-[48vw] h-[9vw]">
-                <img src="/assets/images/drop333.png" alt="Inside the world of" className='w-full h-full object-contain' />
+                <img src={drop333} alt="Inside the world of" className='w-full h-full object-contain' />
               </div>
               <span className="pt-4.5 text-[4.5vw] averia-libre-bold-italic text-red-400 drop-shadow-sm leading-none font-extrabold">
                 DOMS

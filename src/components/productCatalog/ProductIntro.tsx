@@ -1,4 +1,9 @@
 import { useRef } from 'react';
+import inxonVid from '../../assets/videos/inxon.mp4';
+import cakeVid from '../../assets/videos/Refilable-Colour-Cake-Compressed.mp4';
+import zillionVid from '../../assets/videos/Zillion-compressed.mp4';
+import poster1 from '../../assets/images/hero_image1.jpg';
+
 
 const VideoBox = ({ src, title, poster }: { src: string; title: string; poster?: string }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -51,16 +56,16 @@ const ProductIntro = () => {
         {/* Video Boxes Grid */}
         <div className="w-[90vw] flex items-center justify-center pt-4 gap-[3vw]">
           <VideoBox
-            src="/videos/inxon.mp4"
+            src={inxonVid}
             title="Inxon"
           />
           <VideoBox
-            src="/videos/Refilable-Colour-Cake-Compressed.mp4"
+            src={cakeVid}
             title="Refillable Colour Cake"
-            poster="/assets/images/hero_image1.jpg"
+            poster={poster1}
           />
           <VideoBox
-            src="/videos/Zillion-compressed.mp4"
+            src={zillionVid}
             title="Zillion"
           />
         </div>

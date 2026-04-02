@@ -1,17 +1,22 @@
+import community1 from '../../assets/images/community1.png';
+import social1 from '../../assets/images/social1.png';
+import social2 from '../../assets/images/social2.png';
+import social3 from '../../assets/images/social3.png';
+import social4 from '../../assets/images/social4.png';
 
 const CommunitySection = () => {
   return (
     <section className="w-full overflow-hidden bg-gradient-to-b from-gray-300 via-[white] to-transparent" id="social">
 
       <div className="w-[78vw] mx-auto pt-[4vw]">
-        <img src="/assets/images/community1.png" alt="Social Heading" className="w-[40vw] h-full object-cover" />
+        <img src={community1} alt="Social Heading" className="w-[40vw] h-full object-cover" />
         <div className="flex items-center justify-between">
 
           {/* Left Side: Large Image */}
           <div className="w-[30%] h-[650px] flex justify-center items-center pt-14 pr-14 mr-14 pl-10">
             <div className="w-full h-full rounded-2xl overflow-hidden transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src="/assets/images/social3.png"
+                src={social3}
                 alt="Social World"
                 className="w-full h-full object-contain cursor-pointer drop-shadow-[-5px_5px_rgba(0,0,0,0.25)]"
               />
@@ -29,21 +34,21 @@ const CommunitySection = () => {
               {/* Instagram */}
               <div className="group cursor-pointer">
                 <div className="w-[200px] h-[200px] rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:shadow-2xl group-hover:-translate-y-2">
-                  <img src="/assets/images/social1.png" alt="Instagram" className="w-[70%] h-[70%] object-contain" />
+                  <img src={social1} alt="Instagram" className="w-[70%] h-[70%] object-contain" />
                 </div>
               </div>
 
               {/* YouTube */}
               <div className="group cursor-pointer">
                 <div className="w-[200px] h-[200px]  rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:shadow-2xl group-hover:-translate-y-2">
-                  <img src="/assets/images/social2.png" alt="YouTube" className="w-[70%] h-[70%] object-contain" />
+                  <img src={social2} alt="YouTube" className="w-[70%] h-[70%] object-contain" />
                 </div>
               </div>
 
               {/* Facebook */}
               <div className="group cursor-pointer">
                 <div className="w-[200px] h-[200px]  rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:shadow-2xl group-hover:-translate-y-2">
-                  <img src="/assets/images/social4.png" alt="Facebook" className="w-[50%] h-[50%] object-contain" />
+                  <img src={social4} alt="Facebook" className="w-[50%] h-[50%] object-contain" />
                 </div>
               </div>
             </div>

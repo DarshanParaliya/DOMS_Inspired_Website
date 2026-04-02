@@ -121,7 +121,7 @@
 
 @font-face {
   font-family: '3rdMan';
-  src: url('/fonts/3rd Man.ttf') format('truetype');
+  src: url('./fonts/3rd Man.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

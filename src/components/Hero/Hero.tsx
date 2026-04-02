@@ -3,6 +3,12 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ParticleTrail from './ParticleTrail';
+
+import heroBadge from '../../assets/images/hero_badge.png';
+import pencilImage from '../../assets/images/pencil_image.png';
+import heroImage2 from '../../assets/images/hero_image2.jpg';
+import heroImage1 from '../../assets/images/hero_image1.jpg';
+
 // ScrollTrigger is registered once in App.tsx — imported here for GSAP to resolve the plugin at runtime
 void ScrollTrigger; // prevent tree-shaking of the side-effecting plugin reference
 
@@ -166,7 +172,7 @@ const Hero = ({ isLoaded }: HeroProps) => {
     >
 
       <div ref={badgeRef} className='absolute top-[60%] right-[7%] w-[15vw] opacity-[50%]'>
-        <img src="/assets/images/hero_badge.png" className=" h-[15vw] object-cover" alt="Badge" />
+        <img src={heroBadge} className=" h-[15vw] object-cover" alt="Badge" />
       </div>
 
 
@@ -198,7 +204,7 @@ const Hero = ({ isLoaded }: HeroProps) => {
         >
           <img
             ref={heroPencilRef}
-            src="/assets/images/pencil_image.png"
+            src={pencilImage}
             alt="DOMS Premium Pencil"
             className="w-[23vw] min-w-[300px] h-auto opacity-[95%] pointer-events-auto select-none drop-shadow-[0_40px_80px_rgba(0,0,0,0.5)]"
           />
@@ -207,14 +213,14 @@ const Hero = ({ isLoaded }: HeroProps) => {
 
       <img
         ref={notepadRef}
-        src="/assets/images/hero_image2.jpg"
+        src={heroImage2}
         alt="Notepad"
         className="absolute top-[15%] left-[15%] z-[15] w-[8vw] min-w-[150px] opacity-[65%] h-auto -rotate-[22deg] drop-shadow-[0_15px_30px_rgba(0,0,0,0.2)] rounded-[10px]"
       />
 
       <img
         ref={paletteRef}
-        src="/assets/images/hero_image1.jpg"
+        src={heroImage1}
         alt="Palette"
         className="absolute bottom-[10%] left-[15%] z-[15] w-[10vw] opacity-[65%] min-w-[180px] h-auto rotate-[5deg] drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
       />
