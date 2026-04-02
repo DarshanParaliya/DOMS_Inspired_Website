@@ -1,13 +1,19 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import legacyImg from '../../assets/images/DOMS_image1.webp';
+
+gsap.registerPlugin(ScrollTrigger);
+import legacyImg from '../../assets/images/about_us1.webp';
 import pencilImg from '../../assets/images/pencil_image.png';
+import manufacturingImg from '../../assets/images/about_us2.webp';
+import mascotImg from '../../assets/images/about_us3.webp';
 
 
 const AboutUs = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const mascotRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     gsap.from(contentRef.current, {
@@ -17,6 +23,20 @@ const AboutUs = () => {
       ease: "power3.out",
       delay: 0.2
     });
+
+    if (mascotRef.current) {
+      gsap.from(mascotRef.current, {
+        x: 400,
+        opacity: 0,
+        duration: 2.5,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: mascotRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none"
+        }
+      });
+    }
   }, { scope: containerRef });
 
   return (
@@ -55,7 +75,54 @@ const AboutUs = () => {
           </div>
           <div className="relative">
             <div className="absolute inset-0 bg-orange-200/50 blur-3xl rounded-full scale-75" />
-            <img src={legacyImg} alt="Legacy" className="relative z-10 w-full h-auto rounded-[3rem] shadow-2xl border-8 border-white" />
+            <img src={legacyImg} alt="Legacy" className="relative z-10 w-full  h-auto rounded-[3rem] shadow-2xl border-4 border-white" />
+          </div>
+        </div>
+
+        {/* Manufacturing Facilities Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+          <div className="relative order-2 lg:order-1">
+            <div className="absolute inset-0 bg-blue-200/50 blur-3xl rounded-full scale-75" />
+            <img src={manufacturingImg} alt="Manufacturing" className="relative z-10 w-full h-[15vw] rounded-[2rem] shadow-1xl border-4 border-white" />
+          </div>
+          <div className="space-y-8 text-left order-1 lg:order-2">
+            <h2 className="text-4xl titan-one-regular text-[#111] uppercase">OUR <span className="text-blue-500">FACILITIES</span></h2>
+            <div className="space-y-6">
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed">
+                DOMS’s manufacturing facilities are sprawled in **Umbergaon, Gujarat** and **Jammu & Kashmir** in India, spreading across **1 million square feet** of built-up area.
+              </p>
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed">
+                To accommodate its immediate growth plan, the company has commenced construction to develop additional production facilities of **625,000 square feet**, expected to be ready in a phased manner.
+              </p>
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed">
+                In **Jammu**, current production facilities are spread across **100,000 square feet** focused on producing high-quality pencils, sourcing one of the best quality wood available in India.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Mascot Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+          <div className="space-y-8 text-left">
+            <h2 className="text-4xl titan-one-regular text-[#111] uppercase">DOMMY- <span className="text-green-500">THE YOUNG SPIRIT</span></h2>
+            <div className="space-y-6">
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed font-bold italic">
+                DOMMY is the embodiment of the modern-day kid.
+              </p>
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed">
+                He is sharp, quick, technologically savvy and very tuned into the modern world. He is not just academically bright but also creatively sharp. 
+              </p>
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed">
+                Dommy encourages kids to discover their talents and go beyond their limits. At the same time, it encourages them to believe that they need to prepare today for whatever they wish to be in the future.
+              </p>
+              <p className="text-lg averia-libre-regular text-gray-600 leading-relaxed">
+                DOMS has created our mascot **DOMMY** to communicate with kids in a joyful and relatable way. We aimed to create a friend that engages them and generates curiosity in their sharp minds.
+              </p>
+            </div>
+          </div>
+          <div ref={mascotRef} className="relative">
+            <div className="absolute inset-0 bg-green-200/50 blur-3xl rounded-full scale-75" />
+            <img src={mascotImg} alt="DOMMY Mascot" className="relative z-10 w-[20vw] h-[30vw] group-hover:rotate-3 transition-transform duration-500" />
           </div>
         </div>
 
@@ -71,11 +138,6 @@ const AboutUs = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Decorative floating elements */}
-      <div className="absolute top-[15%] right-[10%] w-[12vw] opacity-30 animate-pulse">
-        <img src={pencilImg} alt="" className="w-full rotate-45" />
       </div>
     </div>
   );

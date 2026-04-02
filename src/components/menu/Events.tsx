@@ -28,7 +28,7 @@ const Events = () => {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center pt-20 px-10"
+      className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center py-20 px-10"
       style={{
         background: 'radial-gradient(circle at 80% 20%, #86efac 0%, transparent 40%), radial-gradient(circle at 20% 80%, #fef08a 0%, transparent 40%), #ecfdf5',
       }}
