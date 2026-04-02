@@ -27,7 +27,7 @@ const Footer = () => {
     <section className="relative w-full min-h-screen flex items-center justify-center py-20 px-4 md:px-10 overflow-hidden bg-gradient-to-b from-green-300 via-white to-blue-300">
 
       {/* Polaroid Image */}
-      <div className="w-[14vw] h-[17vw] overflow-hidden bg-gray-50 flex items-center justify-center border-6 border-gray-300 absolute top-[1%] left-0 mr-[5vw] mt-[5vw] z-10 rotate-[15deg] left-60 top-[-0.5%]">
+      <div className="w-[14vw] h-[17vw] overflow-hidden bg-gray-50 flex items-center justify-center border-6 border-gray-300 absolute top-[2%] left-0 mr-[5vw] mt-[5vw] z-10 rotate-[15deg] left-60 top-[-0.5%]">
         <img
           src="/assets/images/footer1.png"
           alt="Creativity takes courage"
