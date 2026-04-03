@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import domsLogo from '../../assets/images/doms_logo2.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const menuItems = [
@@ -12,6 +13,24 @@ const Navbar = () => {
     { name: 'AboutUs', link: '/about-us' },
     { name: 'Profile', link: '/profile' },
   ];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const handleNavigation = (link: string) => {
     navigate(link);
@@ -28,7 +47,7 @@ const Navbar = () => {
         onClick={() => navigate('/')}
       />
 
-      <div className="relative">
+      <div ref={menuRef} className="relative">
         {/* Menu Toggle Trigger */}
         <div
           onClick={() => setIsOpen(!isOpen)}
