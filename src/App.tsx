@@ -69,33 +69,8 @@ function App() {
 
         <Routes>
           {/* Home Route containing all original sections */}
-          <Route path="/" element={
-            <div className="relative w-full overflow-x-hidden bg-transparent">
-              <section className="relative w-full h-screen bg-transparent">
-                <Hero isLoaded={loaded} />
-              </section>
-
-              <Marquee />
-
-              <section className={`relative w-full bg-transparent ${loaded ? 'visible' : 'invisible'}`}>
-                <ProductCatalog />
-              </section>
-
-              <section className={`relative w-full bg-transparent ${loaded ? 'visible' : 'invisible'}`}>
-                <ProductIntro />
-              </section>
-
-              <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
-                <CommunitySection />
-              </section>
-
-              <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
-                <BrandJourney />
-              </section>
-
-              <Footer />
-            </div>
-          } />
+          <Route path="/" element={<Home loaded={loaded} />} />
+          <Route path="/products-grid" element={<Home loaded={loaded} scrollToProducts={true} />} />
 
           {/* Lazy-loaded page routes — each wrapped in Suspense to satisfy React Router children constraints */}
           <Route path="/blogs" element={<Suspense fallback={<LoadingFallback />}><Blogs /></Suspense>} />
@@ -106,6 +81,48 @@ function App() {
         </Routes>
       </div>
     </ReactLenis>
+  );
+};
+
+// Refactored Home component to support direct section navigation via route
+const Home = ({ loaded, scrollToProducts = false }: { loaded: boolean; scrollToProducts?: boolean }) => {
+  useEffect(() => {
+    if (scrollToProducts && loaded) {
+      const element = document.getElementById('products-grid');
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      }
+    }
+  }, [loaded, scrollToProducts]);
+
+  return (
+    <div className="relative w-full overflow-x-hidden bg-transparent">
+      <section className="relative w-full h-screen bg-transparent">
+        <Hero isLoaded={loaded} />
+      </section>
+
+      <Marquee />
+
+      <section className={`relative w-full bg-transparent ${loaded ? 'visible' : 'invisible'}`}>
+        <ProductCatalog />
+      </section>
+
+      <section className={`relative w-full bg-transparent ${loaded ? 'visible' : 'invisible'}`}>
+        <ProductIntro />
+      </section>
+
+      <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
+        <CommunitySection />
+      </section>
+
+      <section className={`relative w-full ${loaded ? 'visible' : 'invisible'}`}>
+        <BrandJourney />
+      </section>
+
+      <Footer />
+    </div>
   );
 };
 

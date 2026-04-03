@@ -150,7 +150,7 @@ const ProductDetails = () => {
       style={{ background: `linear-gradient(135deg, ${product.bgColor}11 0%, #f5f4f0 100%)` }}
     >
       <button
-        onClick={() => navigate('/#products-grid')}
+        onClick={() => navigate('/products-grid')}
         className="flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-12 group"
       >
         <span className="group-hover:-translate-x-1 transition-transform">←</span> BACK

@@ -91,7 +91,7 @@ const ProductCatalog = () => {
         if (entry.isIntersecting) {
           setIsGridVisible(true);
         } else {
-          setIsGridVisible(false); // 👈 ADD THIS (reverse hide)
+          setIsGridVisible(false);
         }
       });
     },

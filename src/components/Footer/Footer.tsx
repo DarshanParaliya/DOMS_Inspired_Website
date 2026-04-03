@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import { useState, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import footer1 from '../../assets/images/footer1.png';
 import domsLogo from '../../assets/images/doms_logo2.png';
 
 
 const Footer = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const colors = ['#facc15', '#ef4444', '#000000', '#22c55e', '#ec4899'];
 
@@ -122,7 +124,7 @@ const Footer = () => {
         {/* Address and Socials */}
         <div className="w-full flex flex-col md:flex-row items-center justify-around gap-10 border-t border-gray-100">
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-            <div className="w-[4.5vw] h-[4.5vw] cursor-pointer" onClick={() => window.location.href = "/"}>
+            <div className="w-[4.5vw] h-[4.5vw] cursor-pointer" onClick={() => navigate('/')}>
               <img src={domsLogo} className="w-full h-full object-contain" />
             </div>
             <p className="max-w-md sour-gummy text-gray-500 leading-relaxed text-md">
