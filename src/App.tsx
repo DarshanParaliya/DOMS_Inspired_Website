@@ -19,6 +19,7 @@ const Blogs = lazy(() => import('./components/menu/Blogs'));
 const Events = lazy(() => import('./components/menu/Events'));
 const AboutUs = lazy(() => import('./components/menu/AboutUs'));
 const Profile = lazy(() => import('./components/menu/Profile'));
+const ProductDetails = lazy(() => import('./components/ProductDetails/ProductDetails'));
 
 // Guard against double-registration (e.g. React StrictMode double-mount) — gsap.registerPlugin is idempotent
 gsap.registerPlugin(ScrollTrigger);
@@ -27,11 +28,21 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const location = useLocation();
 
-  // Scroll to top + refresh ScrollTrigger on route change
+  // Scroll to anchor on hash change or route transition
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
     ScrollTrigger.refresh();
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   // Unlock scroll after loader finishes and do a single deferred refresh
   useEffect(() => {
@@ -91,6 +102,7 @@ function App() {
           <Route path="/events" element={<Suspense fallback={<LoadingFallback />}><Events /></Suspense>} />
           <Route path="/about-us" element={<Suspense fallback={<LoadingFallback />}><AboutUs /></Suspense>} />
           <Route path="/profile" element={<Suspense fallback={<LoadingFallback />}><Profile /></Suspense>} />
+          <Route path="/product/:id" element={<Suspense fallback={<LoadingFallback />}><ProductDetails /></Suspense>} />
         </Routes>
       </div>
     </ReactLenis>

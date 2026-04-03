@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -122,12 +122,98 @@ const BrandJourney = () => {
     return () => clearTimeout(refreshTimer);
   }, { scope: horizontalSectionRef });
 
+  const juryMembers = [
+    {
+      id: 1,
+      name: "Late Shri Rasikbhai Raveshia",
+      role: "Founder of DOMS Industries",
+      image: founder1,
+      color: "bg-red-300/30",
+      modalColor: "bg-red-300/15",
+      glow: "bg-blue-300/20",
+      description: "A visionary leader and the foundational pillar of DOMS Industries, whose legacy continues to inspire excellence and innovation in the stationery world."
+    },
+    {
+      id: 2,
+      name: "Shri Mansukhbhai Rajani",
+      role: "Founder of DOMS Industries",
+      image: founder2,
+      color: "bg-yellow-300/50",
+      modalColor: "bg-yellow-300/25",
+      glow: "bg-purple-300/20",
+      description: "Co-founder of DOMS, instrumental in shaping the company's early growth and establishing its commitment to quality and craftsmanship."
+    },
+    {
+      id: 3,
+      name: "Massimo Candela",
+      role: "Chairperson and Non-Executive Director",
+      image: founder3,
+      color: "bg-blue-300/30",
+      modalColor: "bg-blue-300/15",
+      glow: "bg-green-300/20",
+      description: "Bringing global perspective and strategic leadership to the board, steering the company towards international standards and diverse market presence."
+    },
+    {
+      id: 4,
+      name: "Sanjay Rajani",
+      role: "Whole-time Director and Promoter",
+      image: founder4,
+      color: "bg-orange-300/80",
+      modalColor: "bg-orange-300/40",
+      glow: "bg-orange-300/20",
+      description: "A key promoter and director dedicated to the company's operational excellence and strategic expansion, ensuring DOMS remains a market leader."
+    }
+  ];
+
+  const [selectedPerson, setSelectedPerson] = useState<typeof juryMembers[0] | null>(null);
+
   return (
     <section
       ref={horizontalSectionRef}
       className="relative w-full h-screen overflow-hidden bg-gradient-to-b from-transparent from-50% to-green-300"
       id="dropdown-section"
     >
+      {/* Modal Popup */}
+      {selectedPerson && (
+        <div
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/30 backdrop-blur-md  p-4 transition-all duration-300"
+          onClick={() => setSelectedPerson(null)}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            className="relative bg-white/20 border border-white/40 p-8 md:p-12 max-w-[60vw] bg-white/30 overflow-hidden shadow-2xl flex flex-col md:flex-row items-center gap-10"
+            onClick={(e) => e.stopPropagation()}
+
+          >
+            {/* Background Glow */}
+            <div className={`absolute -top-20 -left-20 w-60 h-60 rounded-full blur-[100px] opacity-40 ${selectedPerson.glow}`} />
+
+            <div className="w-[15vw] h-[15vw] md:w-[22vw] md:h-[22vw] relative z-10 flex-shrink-0">
+              {/* Frame in Modal */}
+              <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] ${selectedPerson.modalColor} border border-white/40 z-0`} />
+              <img src={selectedPerson.image} alt={selectedPerson.name} className="w-full h-full object-cover relative z-10" />
+            </div>
+
+            <div className="flex flex-col gap-4 relative z-10">
+              <button
+                onClick={() => setSelectedPerson(null)}
+                className="absolute -top-25 -right-4 w-10 h-10 rounded-full bg-white/50 flex items-center justify-center text-gray-800 hover:bg-white transition-colors"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+              <h2 className="text-[2.5vw] font-bold text-[#111] leading-tight roboto-condensed">{selectedPerson.name}</h2>
+              <div className="w-12 h-1 bg-gradient-to-r from-red-400 to-yellow-400" />
+              <p className="text-[1.2vw] font-semibold text-red-500 uppercase tracking-wider">{selectedPerson.role}</p>
+              <p className="text-[1.1vw] text-gray-700 leading-relaxed max-w-[30vw] font-medium josefin-sans">
+                {selectedPerson.description}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      )}
 
       {/* Intricate SVG Filter for the Mask (Global for the section) */}
       <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
@@ -213,57 +299,84 @@ const BrandJourney = () => {
 
           <div>
 
-            <div className='left-[5%] bottom-[47%] absolute'>
-              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>Late Shri Rasikbhai Raveshia</h2>
-              <p className='text-[1vw] font-[500] text-[#111]'>Founder of DOMS Industries</p>
+            <div className='left-[5%] bottom-[47%] absolute pointer-events-none'>
+              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>{juryMembers[0].name}</h2>
+              <p className='text-[1vw] font-[500] text-[#111]'>{juryMembers[0].role}</p>
             </div>
-            <div className='w-[22vw] h-[22vw] absolute bottom-[-2%] left-3'>
+            <div
+              className='w-[22vw] h-[22vw] absolute bottom-[-2%] left-3 cursor-pointer group'
+              onClick={() => setSelectedPerson(juryMembers[0])}
+            >
               {/* Premium Photo Frame for Person 1 */}
-              <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[100%] h-[110%] bg-red-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[100%] h-[110%] bg-red-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden transition-transform duration-300 group-hover:scale-105">
                 <div className="absolute inset-0 bg-blue-300/20 blur-[4vw]" />
               </div>
-              <img src={founder1} alt="" className='w-full h-full relative z-10' />
+              <img src={founder1} alt="" className='w-full h-full relative z-10 transition-transform duration-300 group-hover:-translate-y-2' />
+
+              {/* View Profile Overlay */}
+              <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/40 rounded-full text-[0.8vw] font-bold text-white uppercase tracking-widest shadow-lg">View Profile</span>
+              </div>
             </div>
 
-
-
-            <div className='left-[30%] bottom-[39%] absolute'>
-              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>Shri Mansukhbhai Rajani</h2>
-              <p className='text-[1vw] font-[500] text-[#111]'>Founder of DOMS Industries</p>
+            <div className='left-[30%] bottom-[39%] absolute pointer-events-none'>
+              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>{juryMembers[1].name}</h2>
+              <p className='text-[1vw] font-[500] text-[#111]'>{juryMembers[1].role}</p>
             </div>
-            <div className='w-[20vw] h-[20vw] absolute bottom-[-4%] left-[26%]'>
+            <div
+              className='w-[20vw] h-[20vw] absolute bottom-[-4%] left-[26%] cursor-pointer group'
+              onClick={() => setSelectedPerson(juryMembers[1])}
+            >
               {/* Premium Photo Frame for Person 2 */}
-              <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[110%] h-[110%] bg-yellow-300/50 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-[1%] left-1/2 -translate-x-1/2 w-[110%] h-[110%] bg-yellow-300/50 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden transition-transform duration-300 group-hover:scale-105">
                 <div className="absolute inset-0 bg-purple-300/20 blur-[4vw]" />
               </div>
-              <img src={founder2} alt="" className='w-full h-full relative z-10' />
+              <img src={founder2} alt="" className='w-full h-full relative z-10 transition-transform duration-300 group-hover:-translate-y-2' />
+
+              {/* View Profile Overlay */}
+              <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/40 rounded-full text-[0.8vw] font-bold text-white uppercase tracking-widest shadow-lg">View Profile</span>
+              </div>
             </div>
 
-
-
-            <div className='left-[55%] bottom-[40%] absolute'>
-              <h2 className='font-bold  roboto-condensed text-[#111] text-[1.3vw]'>Massimo Candela</h2>
-              <p className='text-[1vw] font-[500] text-[#111]'>Chairperson and Non-Executive <br />Director of our Company </p>
+            <div className='left-[55%] bottom-[40%] absolute pointer-events-none'>
+              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>{juryMembers[2].name}</h2>
+              <p className='text-[1vw] font-[500] text-[#111]'>{juryMembers[2].role}</p>
             </div>
-            <div className='w-[22vw] h-[22vw] absolute bottom-[-4%] left-[52%]'>
+            <div
+              className='w-[22vw] h-[22vw] absolute bottom-[-4%] left-[52%] cursor-pointer group'
+              onClick={() => setSelectedPerson(juryMembers[2])}
+            >
               {/* Premium Photo Frame for Person 3 */}
-              <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[90%] h-[100%] bg-blue-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[90%] h-[100%] bg-blue-300/30 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden transition-transform duration-300 group-hover:scale-105">
                 <div className="absolute inset-0 bg-green-300/20 blur-[4vw]" />
               </div>
-              <img src={founder3} alt="" className='w-full h-full relative z-10' />
+              <img src={founder3} alt="" className='w-full h-full relative z-10 transition-transform duration-300 group-hover:-translate-y-2' />
+
+              {/* View Profile Overlay */}
+              <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/40 rounded-full text-[0.8vw] font-bold text-white uppercase tracking-widest shadow-lg">View Profile</span>
+              </div>
             </div>
 
-
-            <div className='right-[3%] bottom-[36%] absolute'>
-              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>Sanjay Rajani</h2>
-              <p className='text-[0.9vw] font-[500] text-[#111]'>Whole-time Director and one of <br />the Individual Promoters of our Company</p>
+            <div className='right-[3%] bottom-[36%] absolute pointer-events-none text-right'>
+              <h2 className='font-bold roboto-condensed text-[#111] text-[1.3vw]'>{juryMembers[3].name}</h2>
+              <p className='text-[0.9vw] font-[500] text-[#111]'>{juryMembers[3].role}</p>
             </div>
-            <div className='w-[20vw] h-[20vw] absolute bottom-[-4%] right-[2%]'>
+            <div
+              className='w-[20vw] h-[20vw] absolute bottom-[-4%] right-[2%] cursor-pointer group'
+              onClick={() => setSelectedPerson(juryMembers[3])}
+            >
               {/* Premium Photo Frame for Person 4 */}
-              <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[110%] h-[105%] bg-orange-300/80 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-[3%] left-1/2 -translate-x-1/2 w-[110%] h-[105%] bg-orange-300/80 border border-white/40 backdrop-blur-xl rounded-[2vw] shadow-xl z-0 pointer-events-none overflow-hidden transition-transform duration-300 group-hover:scale-105">
                 <div className="absolute inset-0 bg-orange-300/20 blur-[4vw]" />
               </div>
-              <img src={founder4} alt="" className='w-full h-full relative z-10' />
+              <img src={founder4} alt="" className='w-full h-full relative z-10 transition-transform duration-300 group-hover:-translate-y-2' />
+
+              {/* View Profile Overlay */}
+              <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/40 rounded-full text-[0.8vw] font-bold text-white uppercase tracking-widest shadow-lg">View Profile</span>
+              </div>
             </div>
           </div>
 

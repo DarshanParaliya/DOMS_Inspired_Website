@@ -1,5 +1,5 @@
-
 import { forwardRef, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductCardProps {
   id: string | number;
@@ -22,6 +22,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
   onMouseLeave,
   isVisible = false
 }, ref) => {
+  const navigate = useNavigate();
   const filterId = `textured-mask-${id}`;
   const seed = typeof id === 'number' ? id : parseInt(id as string) || 1;
 
@@ -33,6 +34,7 @@ const ProductCard = forwardRef<HTMLDivElement, ProductCardProps>(({
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      onClick={() => navigate(`/product/${id}`)}
       className="bg-white overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-500 w-full max-w-[320px] h-[400px] group cursor-pointer border-10 border-white flex flex-col relative mx-auto"
     >
       {/* Intricate SVG Filter for the Mask */}
